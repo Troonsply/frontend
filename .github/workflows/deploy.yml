@@ -9,11 +9,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - save_cache:
-            key: dependency-cache
-            paths:
-              - ./node_modules
-              - ./.next/cache
       - name: Checkout repository
         uses: actions/checkout@v2
 
