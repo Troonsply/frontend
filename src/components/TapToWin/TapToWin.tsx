@@ -10,18 +10,18 @@ const TapToWin: FC = () => {
             <ConnectWalletButton/>
             <div className="text-center my-8 flex-col justify-between">
                 <div className="relative group">
-                    <h1 className="text-5xl text-black mb-40">Tap to win!</h1>
-                    {/* Tooltip */}
-                    <div
-                        className="text-left absolute bottom-full right-0 r mb-2 w-64 p-3 bg-gray-300 text-black text-sm rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <p className="font-semibold mb-1">Rules:</p>
-                        <span>- 3 different pools</span><br/>
-                        <span>- Each tap increases the total prize fund of the pool</span><br/>
-                        <span>
-                            - Random tap from 10 to 1000 receives the entire pool prize pool except for the 10%
-                                commission and transaction fee
+                    <h1 className="text-5xl text-black mb-40 flex items-center justify-center">
+                        Tap to win!
+                        <span className="relative group -mt-8 -translate-y-1">
+                            <p className="text-base w-8 h-8 flex items-center justify-center m-1 bg-gray-300 rounded-full cursor-pointer">{'\u262D'}</p>
+                            <div className="absolute bottom-full right-0 mb-2 w-64 p-3 bg-gray-300 text-black text-sm rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <p className="font-semibold mb-1">Rules:</p>
+                                <span>- 3 different pools</span><br/>
+                                <span>- Each tap increases the total prize fund of the pool</span><br/>
+                                <span>- Random tap from 10 to 1000 receives the entire pool prize pool except for the 10% commission and transaction fee</span>
+                            </div>
                         </span>
-                    </div>
+                    </h1>
                 </div>
                 <div className="flex space-x-16 mt-2">
                     <TapButton label="1 ETH"/>
