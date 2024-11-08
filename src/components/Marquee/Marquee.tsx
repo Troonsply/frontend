@@ -25,7 +25,7 @@ const Marquee: FC<MarqueeProps> = ({ text }) => {
                 .animate-marquee {
                     display: flex;
                     animation: marquee 15s linear infinite;
-                    min-width: 100%; /* Гарантирует, что текст покрывает полную ширину контейнера */
+                    min-width: 100%;
                 }
             `}</style>
         </div>
