@@ -2,7 +2,9 @@
 
 import { BrowserProvider, ethers, JsonRpcSigner } from "ethers";
 import { useCallback, useEffect, useState } from "react";
-
+interface Window {
+    ethereum?: any;
+}
 export interface IWeb3State {
     address: string | null;
     currentChain: number | null;
@@ -26,7 +28,7 @@ const useWeb3Provider = () => {
         if (state.isAuthenticated) return;
 
         try {
-            const { ethereum } = window;
+            const { ethereum } = (window as any);
 
             if (!ethereum) {
                 return alert('No ethereum wallet found')
@@ -67,18 +69,18 @@ const useWeb3Provider = () => {
     }, [connectWallet, state.isAuthenticated]);
 
     useEffect(() => {
-        if (typeof window.ethereum === "undefined") return;
+        if (typeof (window as any)?.ethereum === "undefined") return;
 
-        window.ethereum.on("accountsChanged", (accounts: string[]) => {
+        (window as any)?.ethereum.on("accountsChanged", (accounts: string[]) => {
             setState({ ...state, address: accounts[0] });
         });
 
-        window.ethereum.on("networkChanged", (network: string) => {
+        (window as any)?.ethereum.on("networkChanged", (network: string) => {
             setState({ ...state, currentChain: Number(network) });
         });
 
         return () => {
-            window.ethereum.removeAllListeners();
+            (window as any)?.ethereum.removeAllListeners();
         };
     }, [state]);
 

@@ -13,14 +13,13 @@ const BSCTChainID = 97;
 const TapToWin: FC = () => {
     const {
         connectWallet,
-        disconnect,
-        state: { isAuthenticated, address, currentChain },
+        state: { currentChain },
     } = useWeb3Context() as IWeb3Context;
 
-    const { lastGreeter, lastMessage } = useInfo();
-    const { greet, loading } = useTapGame();
+    const { lastMessage } = useInfo();
+    const { greet} = useTapGame();
 
-    const [newMessage, setNewMessage] = useState<string>("");
+    const [newMessage] = useState<string>("");
 
     const correctNetwork = useMemo(() => {
         return currentChain === BSCTChainID;
