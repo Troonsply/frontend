@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@metamask/providers": "^18.1.1",
+    "@nanostores/react": "^0.8.0",
     "ethers": "^6.13.4",
+    "nanostores": "^0.11.3",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"

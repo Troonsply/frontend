@@ -28,7 +28,7 @@ const RulesButton: FC = () => {
     }, [isModalOpen]);
 
     return (
-        <div className="relative flex justify-end w-full -mt-28 mr-2">
+        <div className="relative flex justify-end w-full -mt-16 mr-2">
             <button
                 onClick={toggleModal}
                 className="bg-gray-300 px-4 py-2 rounded-md text-black

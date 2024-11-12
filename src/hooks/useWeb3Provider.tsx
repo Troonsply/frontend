@@ -3,6 +3,7 @@
 import { BrowserProvider, ethers, JsonRpcSigner } from "ethers";
 import { useCallback, useEffect, useState } from "react";
 import { MetaMaskInpageProvider } from "@metamask/providers";
+import {$account} from '@/store/accounts';
 
 declare global {
     interface Window{
@@ -33,14 +34,15 @@ const useWeb3Provider = () => {
 
         try {
             const { ethereum } = window;
-
+            console.log('ethereum', ethereum)
             if (!ethereum) {
                 return alert('No ethereum wallet found')
             }
             const provider = new ethers.BrowserProvider(ethereum);
 
             const accounts: string[] = await provider.send("eth_requestAccounts", []);
-
+            $account.set(accounts[0])
+            console.log('accounts', accounts)
             if (accounts.length > 0) {
                 const signer = await provider.getSigner();
                 const chain = Number((await provider.getNetwork()).chainId);
