@@ -1,12 +1,14 @@
 "use client";
 
-import { FC } from 'react';
+import {FC} from 'react';
 
 interface TapButtonProps {
     label: string;
+    tapClick:(e: any) => Promise<void>;
 }
 
-const TapButton: FC<TapButtonProps> = ({ label }) => {
+const TapButton: FC<TapButtonProps> = ({ tapClick, label }) => {
+
     return (
         <div className="flex flex-col items-center">
             <button
@@ -16,6 +18,7 @@ const TapButton: FC<TapButtonProps> = ({ label }) => {
           hover:shadow-xl hover:scale-105
           active:shadow-sm active:scale-95
         "
+                onClick={tapClick}
             >
                 TAP
             </button>

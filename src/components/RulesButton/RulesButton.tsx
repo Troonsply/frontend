@@ -35,7 +35,7 @@ const RulesButton: FC = () => {
                  font-semibold w-36 shadow-lg transform
                  transition-transform duration-200 ease-in-out
                  hover:shadow-xl hover:scale-105
-                active:shadow-sm active:scale-95"
+                 active:shadow-sm active:scale-95"
             >
                 Rules
             </button>

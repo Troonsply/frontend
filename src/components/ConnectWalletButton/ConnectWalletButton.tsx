@@ -2,7 +2,10 @@
 
 import {FC, useEffect, useRef, useState} from 'react';
 
-const ConnectWalletButton: FC = () => {
+interface ConnectWalletButtonProps {
+    connectWallet: () => void;
+}
+const ConnectWalletButton: FC<ConnectWalletButtonProps> = ({connectWallet}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +48,9 @@ const ConnectWalletButton: FC = () => {
                     <div className="w-96 bg-white border border-gray-300 shadow-lg rounded-md p-6" ref={modalRef}>
                         <h2 className="text-lg font-semibold text-center mb-4 text-black">Select Wallet</h2>
                         <button
-                            className="w-full bg-blue-500 text-white py-3 mb-3 rounded-md text-lg hover:bg-blue-600 active:bg-blue-700">
+                            className="w-full bg-blue-500 text-white py-3 mb-3 rounded-md text-lg hover:bg-blue-600 active:bg-blue-700"
+                            onClick={connectWallet}
+                        >
                             Wallet 1
                         </button>
                         <button

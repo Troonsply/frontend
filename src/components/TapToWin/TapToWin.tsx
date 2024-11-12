@@ -1,14 +1,44 @@
-import {FC} from 'react';
+"use client"
+import {FC, useMemo, useState} from 'react';
 import Marquee from '@/components/Marquee/Marquee';
 import TapButton from '@/components/TapButton/TapButton';
 import ConnectWalletButton from '@/components/ConnectWalletButton/ConnectWalletButton';
 import RulesButton from '@/components/RulesButton/RulesButton';
+import {IWeb3Context, useWeb3Context} from '@/contexts/Web3ContextProvider';
+import useTapGame from '@/hooks/useTapGame';
+import useInfo from '@/hooks/useInfo';
+
+const BSCTChainID = 97;
 
 const TapToWin: FC = () => {
+    const {
+        connectWallet,
+        disconnect,
+        state: { isAuthenticated, address, currentChain },
+    } = useWeb3Context() as IWeb3Context;
+
+    const { lastGreeter, lastMessage } = useInfo();
+    const { greet, loading } = useTapGame();
+
+    const [newMessage, setNewMessage] = useState<string>("");
+
+    const correctNetwork = useMemo(() => {
+        return currentChain === BSCTChainID;
+    }, [currentChain]);
+
+    const handleSubmit = async(e: any) => {
+        e.preventDefault();
+        if (newMessage.trim() === "") return;
+
+        greet(newMessage);
+    };
+
     return (
         <div className="min-h-screen flex flex-col items-center justify-between bg-white py-2.5">
-            <Marquee text="Wallet ***jwp won 21 ETH! | Wallet ***nuf won 23 ETH! | Wallet ***583 won 0,99 ETH!"/>
-            <ConnectWalletButton/>
+            <Marquee
+                text={!correctNetwork ? 'Wallet ***jwp tapped 1 ETH! | Wallet ***nuf tapped 0,1 ETH! | Wallet ***583 tapped 0,01 ETH!' : lastMessage ? lastMessage : "Loading..."}
+            />
+            <ConnectWalletButton connectWallet={connectWallet}/>
             <RulesButton/>
             <div className="text-center my-8 flex-col justify-between">
                 <div className="relative group">
@@ -17,14 +47,15 @@ const TapToWin: FC = () => {
                     </h1>
                 </div>
                 <div className="flex space-x-16 mt-2">
-                    <TapButton label="1 ETH"/>
-                    <TapButton label="0.1 ETH"/>
-                    <TapButton label="0.01 ETH"/>
+                    <TapButton label="1 ETH" tapClick={handleSubmit}/>
+                    <TapButton label="0.1 ETH" tapClick={handleSubmit}/>
+                    <TapButton label="0.01 ETH" tapClick={handleSubmit}/>
                 </div>
             </div>
 
             <Marquee
-                text="Wallet ***jwp tapped 1 ETH! | Wallet ***nuf tapped 0,1 ETH! | Wallet ***583 tapped 0,01 ETH!"/>
+                text={!correctNetwork ? 'Wallet ***jwp tapped 1 ETH! | Wallet ***nuf tapped 0,1 ETH! | Wallet ***583 tapped 0,01 ETH!' : lastMessage ? lastMessage : "Loading..."}
+            />
         </div>
     );
 };
