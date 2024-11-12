@@ -3,7 +3,7 @@ import {createContext, FC, ReactNode, useContext} from 'react';
 import useWeb3Provider, {IWeb3State} from '../hooks/useWeb3Provider';
 
 export interface IWeb3Context {
-    connectWallet: () => Promise<any | undefined>;
+    connectWallet: () => Promise<unknown | undefined>;
     disconnect: () => void;
     state: IWeb3State;
 }

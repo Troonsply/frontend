@@ -4,7 +4,7 @@ import {FC} from 'react';
 
 interface TapButtonProps {
     label: string;
-    tapClick:(e: any) => Promise<void>;
+    tapClick:(e: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
 }
 
 const TapButton: FC<TapButtonProps> = ({ tapClick, label }) => {

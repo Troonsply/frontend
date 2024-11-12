@@ -25,7 +25,7 @@ const TapToWin: FC = () => {
         return currentChain === BSCTChainID;
     }, [currentChain]);
 
-    const handleSubmit = async(e: any) => {
+    const handleSubmit = async(e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (newMessage.trim() === "") return;
 
